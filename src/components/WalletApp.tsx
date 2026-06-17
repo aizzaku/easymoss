@@ -114,6 +114,21 @@ export function WalletApp() {
             </div>
           </div>
 
+          <div className="security-note">
+            <h3>How your wallet stays safe</h3>
+            <p>
+              Your private key is created and stored <strong>on your device</strong> using
+              passkey technology — the same thing that secures your Apple or Google account.
+              It never leaves your phone or laptop. MOSS and MegaETH never see it, and
+              nothing is stored on any server.
+            </p>
+            <p>
+              If you lose your device, you can recover your wallet using a one-time
+              Recovery Code that MOSS gives you during setup. Write it down, store it
+              safely — it's the only way back in.
+            </p>
+          </div>
+
           <button
             className="btn btn-primary"
             onClick={() => connect()}

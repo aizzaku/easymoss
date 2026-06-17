@@ -8,6 +8,21 @@ import {
   useBalances,
 } from '@megaeth-labs/wallet-sdk-react';
 import { parseEther } from 'viem';
+import {
+  LockKey,
+  Fingerprint,
+  ArrowUpRight,
+  ArrowDown,
+  Copy,
+  SignOut,
+  Info,
+  Globe,
+  ShieldCheck,
+  Key,
+  CheckCircle,
+  Plus,
+  X,
+} from '@phosphor-icons/react';
 
 type Sheet = 'send' | 'recovery' | null;
 
@@ -54,11 +69,7 @@ export function WalletApp() {
         amount: parseEther(sendAmount).toString(),
       });
       if (result.status === 'approved') {
-        setTxnResult({
-          type: 'success',
-          message: 'Sent.',
-          hash: result.receipt?.hash,
-        });
+        setTxnResult({ type: 'success', message: 'Sent.', hash: result.receipt?.hash });
         showToast('Sent');
       } else if (result.status === 'cancelled') {
         setTxnResult({ type: 'error', message: 'Cancelled.' });
@@ -73,13 +84,13 @@ export function WalletApp() {
       <div className="app-shell">
         <div className="loading-state">
           <div className="spinner spinner-dark" />
-          Loading…
+          Loading
         </div>
       </div>
     );
   }
 
-  // --- Landing ---
+  // ═══════════════ LANDING ═══════════════
   if (status === 'disconnected') {
     return (
       <div className="app-shell">
@@ -91,137 +102,101 @@ export function WalletApp() {
           <span className="network-badge">{network || 'testnet'}</span>
         </header>
 
-        <div className="landing-card">
-          <div className="landing-icon">🔐</div>
-          <h1 className="landing-title">One Wallet.<br />Every App.</h1>
-          <p className="landing-subtitle">
-            A passkey wallet that works everywhere. No seed phrase,
-            no downloads — just tap and go.
-          </p>
+        <div className="bento">
+          {/* Hero */}
+          <div className="bento-card bento-hero">
+            <div className="hero-icon"><LockKey size={28} weight="duotone" /></div>
+            <h1>One Wallet.<br />Every App.</h1>
+            <p>A passkey wallet that works everywhere. No seed phrase, no downloads.</p>
+          </div>
 
-          <div className="landing-features">
-            <div className="feature-item">
-              <span className="feature-icon">·</span>
-              <span>Secured by Face ID or fingerprint</span>
-            </div>
-            <div className="feature-item">
-              <span className="feature-icon">·</span>
-              <span>Works across every MegaETH app</span>
-            </div>
-            <div className="feature-item">
-              <span className="feature-icon">·</span>
-              <span>Recoverable — no seed phrase to lose</span>
+          {/* Features */}
+          <div className="bento-card bento-features">
+            <div className="bento-label">Why MOSS</div>
+            <div className="pills">
+              <span className="pill"><Fingerprint size={16} weight="fill" /> Face ID &amp; fingerprint</span>
+              <span className="pill"><Globe size={16} weight="fill" /> Every MegaETH app</span>
+              <span className="pill"><Key size={16} weight="fill" /> Recoverable</span>
+              <span className="pill"><ShieldCheck size={16} weight="fill" /> Nothing stored online</span>
             </div>
           </div>
 
-          <div className="flow-chart">
-            <h3>How it works — 30 seconds</h3>
-            <div className="flow-steps glass-card">
-              <div className="flow-step">
-                <div className="flow-step-num">1</div>
-                <div className="flow-step-body">
-                  <div className="flow-step-label">Tap Create Wallet</div>
-                  <div className="flow-step-desc">Works on your phone or laptop — Safari, Chrome, any browser.</div>
-                </div>
-              </div>
-              <div className="flow-step">
-                <div className="flow-step-num">2</div>
-                <div className="flow-step-body">
-                  <div className="flow-step-label">Verify with your device</div>
-                  <div className="flow-step-desc">Face ID, Touch ID, or fingerprint. Same as unlocking your phone.</div>
-                </div>
-              </div>
-              <div className="flow-step">
-                <div className="flow-step-num">3</div>
-                <div className="flow-step-body">
-                  <div className="flow-step-label">Key created on-device</div>
-                  <div className="flow-step-desc">Your private key is generated and stored <strong>only</strong> on your device. Nobody else ever sees it.</div>
-                </div>
-              </div>
-              <div className="flow-step">
-                <div className="flow-step-num">4</div>
-                <div className="flow-step-body">
-                  <div className="flow-step-label">Save your Recovery Code</div>
-                  <div className="flow-step-desc">MOSS gives you a one-time code. Write it down — this is your backup if you lose your device.</div>
-                </div>
-              </div>
-              <div className="flow-step">
-                <div className="flow-step-num">✓</div>
-                <div className="flow-step-body">
-                  <div className="flow-step-label">Done. You have a wallet.</div>
-                  <div className="flow-step-desc">Copy your address, get testnet ETH from the faucet, and start using it.</div>
-                </div>
-              </div>
+          {/* Flow */}
+          <div className="bento-card bento-flow">
+            <div className="bento-label">Setup in 30 seconds</div>
+            <div className="flow-mini">
+              <div className="flow-row"><span className="flow-num">1</span> Tap Create Wallet</div>
+              <div className="flow-row"><span className="flow-num">2</span> Verify with Face ID</div>
+              <div className="flow-row"><span className="flow-num">3</span> Key created on device</div>
+              <div className="flow-row"><span className="flow-num">4</span> Save Recovery Code</div>
+              <div className="flow-row done"><CheckCircle size={14} weight="fill" /> Done. You have a wallet.</div>
             </div>
           </div>
 
-          <div className="security-note">
-            <h3>How your wallet stays safe</h3>
+          {/* Security */}
+          <div className="bento-card bento-security">
+            <div className="bento-label">
+              <Info size={14} weight="fill" /> How it's secure
+            </div>
             <p>
-              Your private key is created and stored <strong>on your device</strong> using
-              passkey technology — the same thing that secures your Apple or Google account.
-              It never leaves your phone or laptop. MOSS and MegaETH never see it, and
-              nothing is stored on any server.
-            </p>
-            <p>
-              If you lose your device, you can recover your wallet using a one-time
-              Recovery Code that MOSS gives you during setup. Write it down, store it
-              safely — it's the only way back in.
+              Your private key lives <strong>only on your device</strong>, secured by the same
+              passkey tech that protects your iCloud and Google accounts. Nothing is stored
+              on MegaETH servers.
             </p>
           </div>
 
-          <button
-            className="btn btn-primary"
-            onClick={() => connect()}
-            disabled={isConnecting}
-          >
-            {isConnecting ? (
-              <><div className="spinner" /> Creating…</>
-            ) : (
-              'Create Wallet'
-            )}
-          </button>
-
-          <p className="landing-note">
-            Already have one?{' '}
-            <a onClick={() => setSheet('recovery')}>Restore</a>
-          </p>
+          {/* CTA */}
+          <div className="bento-card bento-cta">
+            <button
+              className="btn btn-primary"
+              onClick={() => connect()}
+              disabled={isConnecting}
+            >
+              {isConnecting ? (
+                <><div className="spinner" /> Creating</>
+              ) : (
+                <><Plus size={18} weight="bold" /> Create Wallet</>
+              )}
+            </button>
+            <p className="cta-sub">
+              Already have one?{' '}
+              <a onClick={() => setSheet('recovery')}>Restore</a>
+            </p>
+          </div>
         </div>
 
         {sheet === 'recovery' && (
           <div className="form-overlay" onClick={(e) => e.target === e.currentTarget && setSheet(null)}>
             <div className="form-sheet">
-              <h2>Restore your wallet</h2>
+              <div className="sheet-header">
+                <h2>Restore your wallet</h2>
+                <button className="sheet-close" onClick={() => setSheet(null)}>
+                  <X size={20} weight="bold" />
+                </button>
+              </div>
               <p className="form-description">
-                You were given a Recovery Code when you created your wallet.
-                MOSS will walk you through restoring it — just tap below.
+                Use the Recovery Code you saved during setup. MOSS will walk you through it.
               </p>
               <div className="form-actions">
-                <button className="btn btn-secondary" onClick={() => setSheet(null)}>
-                  Cancel
-                </button>
-                <button className="btn btn-primary" onClick={() => { setSheet(null); connect(); }}>
-                  Restore
-                </button>
+                <button className="btn btn-secondary" onClick={() => setSheet(null)}>Cancel</button>
+                <button className="btn btn-primary" onClick={() => { setSheet(null); connect(); }}>Restore</button>
               </div>
             </div>
           </div>
         )}
 
         <footer className="app-footer">
-          <p>Built on <a href="https://megaeth.com" target="_blank">MegaETH</a> MOSS</p>
+          <span>Built on MegaETH MOSS</span>
         </footer>
       </div>
     );
   }
 
-  // --- Dashboard ---
+  // ═══════════════ DASHBOARD ═══════════════
   const ethBalance = tokens?.find(
     (t: any) => t.symbol === 'ETH' || t.type === 'native'
   );
-  const balanceDisplay = ethBalance
-    ? Number(ethBalance.balance) / 1e18
-    : 0;
+  const balanceDisplay = ethBalance ? Number(ethBalance.balance) / 1e18 : 0;
 
   return (
     <div className="app-shell">
@@ -233,70 +208,64 @@ export function WalletApp() {
         <span className="network-badge">{network || 'testnet'}</span>
       </header>
 
-      <div className="dashboard">
-        <div className="balance-card">
+      <div className="bento">
+        {/* Balance */}
+        <div className="bento-card bento-balance">
           <div className="balance-label">Balance</div>
           <div className="balance-amount">
             {isBalancesLoading ? '…' : `${balanceDisplay.toFixed(4)} ETH`}
           </div>
           {balanceDisplay === 0 && !isBalancesLoading && (
             <p className="balance-hint">
-              Testnet ETH —{' '}
-              <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank">
-                get some from the faucet
-              </a>
-              . Then tap Deposit.
+              Testnet ETH. <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank">Get from faucet</a>, then tap Deposit.
             </p>
           )}
         </div>
 
-        <div className="address-card">
+        {/* Address */}
+        <div className="bento-card bento-address">
           <div className="address-label">Address</div>
           <div className="address-row">
-            <span className="address-text">
-              {address?.slice(0, 14)}…{address?.slice(-6)}
-            </span>
+            <span className="address-text">{address?.slice(0, 14)}…{address?.slice(-6)}</span>
             <button className="copy-btn" onClick={handleCopy}>
-              {copied ? 'Copied' : 'Copy'}
+              {copied ? 'Copied' : <><Copy size={12} weight="bold" /> Copy</>}
             </button>
           </div>
         </div>
 
-        <div className="action-grid">
+        {/* Actions */}
+        <div className="bento-card bento-actions">
           <button
             className="action-btn"
             onClick={() => { setSheet('send'); setTxnResult(null); setSendTo(''); setSendAmount(''); }}
           >
-            <span className="action-btn-icon">↗</span>
+            <ArrowUpRight size={20} weight="bold" />
             Send
           </button>
           <button className="action-btn" onClick={() => deposit()}>
-            <span className="action-btn-icon">↓</span>
+            <ArrowDown size={20} weight="bold" />
             Deposit
           </button>
           <button className="action-btn" onClick={handleCopy}>
-            <span className="action-btn-icon">📋</span>
+            <Copy size={20} weight="bold" />
             Receive
           </button>
           <button className="action-btn" onClick={() => disconnect()}>
-            <span className="action-btn-icon">↩</span>
+            <SignOut size={20} weight="bold" />
             Disconnect
           </button>
         </div>
 
+        {/* Tokens */}
         {tokens && tokens.length > 0 && (
-          <div className="token-list">
+          <div className="bento-card bento-tokens">
             {tokens.map((token: any, i: number) => (
               <div key={i} className="token-item">
                 <div className="token-info">
-                  <div className="token-icon">
-                    {token.symbol === 'ETH' ? '◆' : '●'}
-                  </div>
+                  <div className="token-icon">{token.symbol === 'ETH' ? '◆' : '●'}</div>
                   <div>
                     <div className="token-name">{token.symbol || token.name || 'Token'}</div>
-                    <div className="token-amount">
-                      {Number(token.balance || 0).toFixed(4)}
-                    </div>
+                    <div className="token-amount">{Number(token.balance || 0).toFixed(4)}</div>
                   </div>
                 </div>
               </div>
@@ -306,59 +275,40 @@ export function WalletApp() {
       </div>
 
       <footer className="app-footer">
-        <p><a href="https://joinmoss.megaeth.com" target="_blank">MOSS</a> on MegaETH</p>
+        <span>Built on MegaETH MOSS</span>
       </footer>
 
       {/* Send Sheet */}
       {sheet === 'send' && (
         <div className="form-overlay" onClick={(e) => e.target === e.currentTarget && setSheet(null)}>
           <div className="form-sheet">
-            <h2>Send ETH</h2>
-
-            <div className="form-group">
-              <label>To</label>
-              <input
-                type="text"
-                placeholder="0x…"
-                value={sendTo}
-                onChange={(e) => setSendTo(e.target.value)}
-              />
+            <div className="sheet-header">
+              <h2>Send ETH</h2>
+              <button className="sheet-close" onClick={() => setSheet(null)}>
+                <X size={20} weight="bold" />
+              </button>
             </div>
 
             <div className="form-group">
+              <label>To</label>
+              <input type="text" placeholder="0x…" value={sendTo} onChange={(e) => setSendTo(e.target.value)} />
+            </div>
+            <div className="form-group">
               <label>Amount</label>
-              <input
-                type="number"
-                step="0.001"
-                placeholder="0.01 ETH"
-                value={sendAmount}
-                onChange={(e) => setSendAmount(e.target.value)}
-              />
+              <input type="number" step="0.001" placeholder="0.01 ETH" value={sendAmount} onChange={(e) => setSendAmount(e.target.value)} />
             </div>
 
             {txnResult && (
               <div className={`txn-result txn-${txnResult.type}`}>
                 {txnResult.message}
-                {txnResult.hash && (
-                  <div className="txn-hash">{txnResult.hash}</div>
-                )}
+                {txnResult.hash && <div className="txn-hash">{txnResult.hash}</div>}
               </div>
             )}
 
             <div className="form-actions">
-              <button className="btn btn-secondary" onClick={() => setSheet(null)}>
-                Cancel
-              </button>
-              <button
-                className="btn btn-primary"
-                onClick={handleSend}
-                disabled={isTransferring || !sendTo || !sendAmount}
-              >
-                {isTransferring ? (
-                  <><div className="spinner" /> Sending…</>
-                ) : (
-                  'Send'
-                )}
+              <button className="btn btn-secondary" onClick={() => setSheet(null)}>Cancel</button>
+              <button className="btn btn-primary" onClick={handleSend} disabled={isTransferring || !sendTo || !sendAmount}>
+                {isTransferring ? <><div className="spinner" /> Sending</> : 'Send'}
               </button>
             </div>
           </div>

@@ -39,7 +39,7 @@ export function WalletApp() {
     if (address) {
       navigator.clipboard.writeText(address);
       setCopied(true);
-      showToast('Address copied!');
+      showToast('Copied');
       setTimeout(() => setCopied(false), 2000);
     }
   }, [address, showToast]);
@@ -56,62 +56,61 @@ export function WalletApp() {
       if (result.status === 'approved') {
         setTxnResult({
           type: 'success',
-          message: 'Transaction sent!',
+          message: 'Sent.',
           hash: result.receipt?.hash,
         });
-        showToast('Sent successfully!');
+        showToast('Sent');
       } else if (result.status === 'cancelled') {
-        setTxnResult({ type: 'error', message: 'Transaction cancelled' });
+        setTxnResult({ type: 'error', message: 'Cancelled.' });
       }
     } catch (err: any) {
-      setTxnResult({ type: 'error', message: err?.message || 'Transaction failed' });
+      setTxnResult({ type: 'error', message: err?.message || 'Failed.' });
     }
   };
 
-  // Loading state
   if (!initialised) {
     return (
       <div className="app-shell">
         <div className="loading-state">
-          <div className="spinner" />
-          <span>Loading wallet...</span>
+          <div className="spinner spinner-dark" />
+          Loading…
         </div>
       </div>
     );
   }
 
-  // Disconnected — show landing
+  // --- Landing ---
   if (status === 'disconnected') {
     return (
       <div className="app-shell">
         <header className="app-header">
           <div className="app-logo">
-            <div className="app-logo-icon">⚡</div>
-            MEGA Wallet
+            <div className="app-logo-icon">M</div>
+            MOSS
           </div>
           <span className="network-badge">{network || 'testnet'}</span>
         </header>
 
         <div className="landing-card">
           <div className="landing-icon">🔐</div>
-          <h1 className="landing-title">Your Wallet, Instantly</h1>
+          <h1 className="landing-title">One Wallet.<br />Every App.</h1>
           <p className="landing-subtitle">
-            One tap to create a secure MegaETH wallet. Protected by your device's
-            passkey — no passwords, no seed phrases, no downloads.
+            A passkey wallet that works everywhere. No seed phrase,
+            no downloads — just tap and go.
           </p>
 
           <div className="landing-features">
             <div className="feature-item">
-              <span className="feature-icon">🔑</span>
-              <span>Secured by Face ID / fingerprint</span>
+              <span className="feature-icon">·</span>
+              <span>Secured by Face ID or fingerprint</span>
             </div>
             <div className="feature-item">
-              <span className="feature-icon">⚡</span>
-              <span>MegaETH testnet — instant & free</span>
+              <span className="feature-icon">·</span>
+              <span>Works across every MegaETH app</span>
             </div>
             <div className="feature-item">
-              <span className="feature-icon">🔄</span>
-              <span>Recoverable with a recovery code</span>
+              <span className="feature-icon">·</span>
+              <span>Recoverable — no seed phrase to lose</span>
             </div>
           </div>
 
@@ -121,38 +120,32 @@ export function WalletApp() {
             disabled={isConnecting}
           >
             {isConnecting ? (
-              <><div className="spinner" /> Opening wallet...</>
+              <><div className="spinner" /> Creating…</>
             ) : (
-              'Create New Wallet'
+              'Create Wallet'
             )}
           </button>
 
           <p className="landing-note">
-            Already have a wallet?{' '}
-            <a onClick={() => setSheet('recovery')}>Restore it here</a>
+            Already have one?{' '}
+            <a onClick={() => setSheet('recovery')}>Restore</a>
           </p>
         </div>
 
-        {/* Recovery Info Sheet */}
         {sheet === 'recovery' && (
           <div className="form-overlay" onClick={(e) => e.target === e.currentTarget && setSheet(null)}>
             <div className="form-sheet">
-              <h2>Restore Your Wallet</h2>
+              <h2>Restore your wallet</h2>
               <p className="form-description">
-                When you created your wallet, MOSS gave you a <strong>Recovery Code</strong>.
-                This is a MOSS-specific code — not a standard seed phrase, so it won't work in
-                other wallets.
-              </p>
-              <p className="form-description">
-                Tap the button below, and MOSS will guide you through restoring your account
-                using your recovery code.
+                You were given a Recovery Code when you created your wallet.
+                MOSS will walk you through restoring it — just tap below.
               </p>
               <div className="form-actions">
                 <button className="btn btn-secondary" onClick={() => setSheet(null)}>
                   Cancel
                 </button>
                 <button className="btn btn-primary" onClick={() => { setSheet(null); connect(); }}>
-                  Open Restore Flow
+                  Restore
                 </button>
               </div>
             </div>
@@ -160,13 +153,13 @@ export function WalletApp() {
         )}
 
         <footer className="app-footer">
-          <p>Powered by <a href="https://megaeth.com" target="_blank">MegaETH</a> MOSS</p>
+          <p>Built on <a href="https://megaeth.com" target="_blank">MegaETH</a> MOSS</p>
         </footer>
       </div>
     );
   }
 
-  // Connected — show dashboard
+  // --- Dashboard ---
   const ethBalance = tokens?.find(
     (t: any) => t.symbol === 'ETH' || t.type === 'native'
   );
@@ -178,36 +171,37 @@ export function WalletApp() {
     <div className="app-shell">
       <header className="app-header">
         <div className="app-logo">
-          <div className="app-logo-icon">⚡</div>
-          MEGA Wallet
+          <div className="app-logo-icon">M</div>
+          MOSS
         </div>
         <span className="network-badge">{network || 'testnet'}</span>
       </header>
 
       <div className="dashboard">
-        {/* Balance Card */}
         <div className="balance-card">
           <div className="balance-label">Balance</div>
           <div className="balance-amount">
-            {isBalancesLoading ? '...' : `${balanceDisplay.toFixed(4)} ETH`}
+            {isBalancesLoading ? '…' : `${balanceDisplay.toFixed(4)} ETH`}
           </div>
           {balanceDisplay === 0 && !isBalancesLoading && (
-            <p style={{ marginTop: 12, fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-              This is testnet ETH — you can get some from the{' '}
-              <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank" style={{ color: 'var(--accent)' }}>MegaETH faucet</a>
-              . Tap Deposit to add funds.
+            <p className="balance-hint">
+              Testnet ETH —{' '}
+              <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank">
+                get some from the faucet
+              </a>
+              . Then tap Deposit.
             </p>
           )}
         </div>
 
         <div className="address-card">
-          <div className="address-label">Your Address</div>
+          <div className="address-label">Address</div>
           <div className="address-row">
             <span className="address-text">
-              {address?.slice(0, 12)}...{address?.slice(-8)}
+              {address?.slice(0, 14)}…{address?.slice(-6)}
             </span>
             <button className="copy-btn" onClick={handleCopy}>
-              {copied ? '✓ Copied' : 'Copy'}
+              {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
         </div>
@@ -229,7 +223,7 @@ export function WalletApp() {
             Receive
           </button>
           <button className="action-btn" onClick={() => disconnect()}>
-            <span className="action-btn-icon">🚪</span>
+            <span className="action-btn-icon">↩</span>
             Disconnect
           </button>
         </div>
@@ -256,7 +250,7 @@ export function WalletApp() {
       </div>
 
       <footer className="app-footer">
-        <p>MegaETH MOSS Wallet · <a href="https://docs.megaeth.com" target="_blank">Docs</a></p>
+        <p><a href="https://joinmoss.megaeth.com" target="_blank">MOSS</a> on MegaETH</p>
       </footer>
 
       {/* Send Sheet */}
@@ -266,21 +260,21 @@ export function WalletApp() {
             <h2>Send ETH</h2>
 
             <div className="form-group">
-              <label>To Address</label>
+              <label>To</label>
               <input
                 type="text"
-                placeholder="0x..."
+                placeholder="0x…"
                 value={sendTo}
                 onChange={(e) => setSendTo(e.target.value)}
               />
             </div>
 
             <div className="form-group">
-              <label>Amount (ETH)</label>
+              <label>Amount</label>
               <input
                 type="number"
                 step="0.001"
-                placeholder="0.01"
+                placeholder="0.01 ETH"
                 value={sendAmount}
                 onChange={(e) => setSendAmount(e.target.value)}
               />
@@ -290,7 +284,7 @@ export function WalletApp() {
               <div className={`txn-result txn-${txnResult.type}`}>
                 {txnResult.message}
                 {txnResult.hash && (
-                  <div className="txn-hash">TX: {txnResult.hash}</div>
+                  <div className="txn-hash">{txnResult.hash}</div>
                 )}
               </div>
             )}
@@ -305,7 +299,7 @@ export function WalletApp() {
                 disabled={isTransferring || !sendTo || !sendAmount}
               >
                 {isTransferring ? (
-                  <><div className="spinner" /> Sending...</>
+                  <><div className="spinner" /> Sending…</>
                 ) : (
                   'Send'
                 )}

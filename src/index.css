@@ -143,6 +143,18 @@ body::after {
   animation: fadeUp 0.5s ease;
 }
 
+.bento-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.bento-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .bento-card {
   background: var(--glass-medium);
   backdrop-filter: var(--blur);
@@ -150,16 +162,21 @@ body::after {
   border: 1px solid var(--glass-border-subtle);
   border-radius: var(--radius);
   box-shadow: var(--glass-shadow);
-  padding: 20px 18px;
+  padding: 16px 14px;
+}
+
+/* Cards inside columns fill height equally via flex */
+.bento-col .bento-card {
+  flex: 1;
 }
 
 .bento-label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   color: var(--text-tertiary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -172,13 +189,13 @@ body::after {
 }
 
 .hero-icon {
-  width: 56px; height: 56px;
-  margin: 0 auto 16px;
+  width: 48px; height: 48px;
+  margin: 0 auto 12px;
   background: var(--glass-strong);
   backdrop-filter: var(--blur-heavy);
   -webkit-backdrop-filter: var(--blur-heavy);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 14px;
   display: flex;
   align-items: center; justify-content: center;
   color: var(--accent);
@@ -186,19 +203,17 @@ body::after {
 }
 
 .bento-hero h1 {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 400;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.7px;
   line-height: 1.1;
   margin-bottom: 8px;
 }
 
 .bento-hero p {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 280px;
-  margin: 0 auto;
+  line-height: 1.45;
 }
 
 /* === Features Bento === */
@@ -215,11 +230,11 @@ body::after {
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 7px 12px;
+  padding: 6px 10px;
   border-radius: var(--radius-pill);
   background: var(--glass-light);
   border: 1px solid var(--glass-border-subtle);
@@ -239,10 +254,10 @@ body::after {
 .flow-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 8px;
+  font-size: 12px;
   color: var(--text-secondary);
-  padding: 8px 0;
+  padding: 7px 0;
   border-bottom: 1px solid var(--glass-border-subtle);
 }
 
@@ -273,9 +288,9 @@ body::after {
 }
 
 .bento-security p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .bento-security strong {

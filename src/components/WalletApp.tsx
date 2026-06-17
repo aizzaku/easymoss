@@ -103,49 +103,48 @@ export function WalletApp() {
         </header>
 
         <div className="bento">
-          {/* Hero */}
-          <div className="bento-card bento-hero">
-            <div className="hero-icon"><LockKey size={28} weight="duotone" /></div>
-            <h1>One Wallet.<br />Every App.</h1>
-            <p>A passkey wallet that works everywhere. No seed phrase, no downloads.</p>
-          </div>
-
-          {/* Features */}
-          <div className="bento-card bento-features">
-            <div className="bento-label">Why MOSS</div>
-            <div className="pills">
-              <span className="pill"><Fingerprint size={16} weight="fill" /> Face ID &amp; fingerprint</span>
-              <span className="pill"><Globe size={16} weight="fill" /> Every MegaETH app</span>
-              <span className="pill"><Key size={16} weight="fill" /> Recoverable</span>
-              <span className="pill"><ShieldCheck size={16} weight="fill" /> Nothing stored online</span>
+          {/* Row 1: two columns */}
+          <div className="bento-row">
+            <div className="bento-col">
+              <div className="bento-card bento-hero">
+                <div className="hero-icon"><LockKey size={28} weight="duotone" /></div>
+                <h1>One Wallet.<br />Every App.</h1>
+                <p>A passkey wallet that works everywhere. No seed phrase, no downloads.</p>
+              </div>
+              <div className="bento-card bento-features">
+                <div className="bento-label">Why MOSS</div>
+                <div className="pills">
+                  <span className="pill"><Fingerprint size={16} weight="fill" /> Face ID &amp; fingerprint</span>
+                  <span className="pill"><Globe size={16} weight="fill" /> Every MegaETH app</span>
+                  <span className="pill"><Key size={16} weight="fill" /> Recoverable</span>
+                  <span className="pill"><ShieldCheck size={16} weight="fill" /> Nothing stored online</span>
+                </div>
+              </div>
+            </div>
+            <div className="bento-col">
+              <div className="bento-card bento-flow">
+                <div className="bento-label">Setup in 30 seconds</div>
+                <div className="flow-mini">
+                  <div className="flow-row"><span className="flow-num">1</span> Tap Create Wallet</div>
+                  <div className="flow-row"><span className="flow-num">2</span> Verify with Face ID</div>
+                  <div className="flow-row"><span className="flow-num">3</span> Key created on device</div>
+                  <div className="flow-row"><span className="flow-num">4</span> Save Recovery Code</div>
+                  <div className="flow-row done"><CheckCircle size={14} weight="fill" /> Done.</div>
+                </div>
+              </div>
+              <div className="bento-card bento-security">
+                <div className="bento-label">
+                  <Info size={14} weight="fill" /> How it's secure
+                </div>
+                <p>
+                  Your private key lives <strong>only on your device</strong>, secured by the same
+                  passkey tech that protects your iCloud and Google accounts.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Flow */}
-          <div className="bento-card bento-flow">
-            <div className="bento-label">Setup in 30 seconds</div>
-            <div className="flow-mini">
-              <div className="flow-row"><span className="flow-num">1</span> Tap Create Wallet</div>
-              <div className="flow-row"><span className="flow-num">2</span> Verify with Face ID</div>
-              <div className="flow-row"><span className="flow-num">3</span> Key created on device</div>
-              <div className="flow-row"><span className="flow-num">4</span> Save Recovery Code</div>
-              <div className="flow-row done"><CheckCircle size={14} weight="fill" /> Done. You have a wallet.</div>
-            </div>
-          </div>
-
-          {/* Security */}
-          <div className="bento-card bento-security">
-            <div className="bento-label">
-              <Info size={14} weight="fill" /> How it's secure
-            </div>
-            <p>
-              Your private key lives <strong>only on your device</strong>, secured by the same
-              passkey tech that protects your iCloud and Google accounts. Nothing is stored
-              on MegaETH servers.
-            </p>
-          </div>
-
-          {/* CTA */}
+          {/* Row 2: full-width CTA */}
           <div className="bento-card bento-cta">
             <button
               className="btn btn-primary"

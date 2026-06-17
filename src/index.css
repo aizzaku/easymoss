@@ -79,9 +79,9 @@ body::after {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 480px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: 28px 20px 32px;
+  padding: 32px 28px 36px;
   width: 100%;
 }
 
@@ -139,20 +139,20 @@ body::after {
 .bento {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   animation: fadeUp 0.5s ease;
 }
 
 .bento-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .bento-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .bento-card {
@@ -219,6 +219,8 @@ body::after {
 /* === Features Bento === */
 .bento-features {
   padding: 18px;
+  background: linear-gradient(135deg, rgba(96, 164, 133, 0.12) 0%, rgba(96, 164, 133, 0.03) 50%, rgba(255, 255, 255, 0.4) 100%);
+  border-color: rgba(96, 164, 133, 0.15);
 }
 
 .pills {
@@ -243,6 +245,8 @@ body::after {
 /* === Flow Bento === */
 .bento-flow {
   padding: 18px;
+  background: linear-gradient(135deg, rgba(96, 164, 133, 0.08) 0%, rgba(96, 164, 133, 0.02) 60%, rgba(255, 255, 255, 0.4) 100%);
+  border-color: rgba(96, 164, 133, 0.12);
 }
 
 .flow-mini {
@@ -573,7 +577,7 @@ body::after {
   border: 1px solid var(--glass-border);
   border-radius: 22px 22px 0 0;
   width: 100%;
-  max-width: 480px;
+  max-width: 680px;
   padding: 28px 24px 36px;
   animation: slideUp 0.3s ease;
   max-height: 85vh;

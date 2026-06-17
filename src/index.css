@@ -223,6 +223,10 @@ body::after {
   border-color: rgba(96, 164, 133, 0.15);
 }
 
+.bento-features .bento-label {
+  color: var(--accent);
+}
+
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -247,6 +251,10 @@ body::after {
   padding: 18px;
   background: linear-gradient(135deg, rgba(96, 164, 133, 0.08) 0%, rgba(96, 164, 133, 0.02) 60%, rgba(255, 255, 255, 0.4) 100%);
   border-color: rgba(96, 164, 133, 0.12);
+}
+
+.bento-flow .bento-label {
+  color: var(--accent);
 }
 
 .flow-mini {

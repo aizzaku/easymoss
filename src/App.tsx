@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MegaProvider config={{ network: 'testnet', logging: 'info', debug: false }}>
+      <MegaProvider config={{ network: 'mainnet', logging: 'info', debug: false }}>
         <WalletApp />
       </MegaProvider>
     </QueryClientProvider>

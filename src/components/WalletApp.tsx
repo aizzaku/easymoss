@@ -116,7 +116,7 @@ export function WalletApp() {
                 <div className="pills">
                   <span className="pill"><Fingerprint size={16} weight="fill" /> Face ID &amp; fingerprint</span>
                   <span className="pill"><Globe size={16} weight="fill" /> Every MegaETH app</span>
-                  <span className="pill"><Key size={16} weight="fill" /> Recoverable</span>
+                  <span className="pill"><Key size={16} weight="fill" /> Recovery Code backup</span>
                   <span className="pill"><ShieldCheck size={16} weight="fill" /> Nothing stored online</span>
                 </div>
               </div>
@@ -159,7 +159,7 @@ export function WalletApp() {
             </button>
             <p className="cta-sub">
               Already have one?{' '}
-              <a onClick={() => setSheet('recovery')}>Restore</a>
+              <a onClick={() => setSheet('recovery')}>Restoring account</a>
             </p>
           </div>
         </div>
@@ -168,17 +168,17 @@ export function WalletApp() {
           <div className="form-overlay" onClick={(e) => e.target === e.currentTarget && setSheet(null)}>
             <div className="form-sheet">
               <div className="sheet-header">
-                <h2>Restore your wallet</h2>
+                <h2>Restoring account</h2>
                 <button className="sheet-close" onClick={() => setSheet(null)}>
                   <X size={20} weight="bold" />
                 </button>
               </div>
               <p className="form-description">
-                Use the Recovery Code you saved during setup. MOSS will walk you through it.
+                Use the Recovery Code you saved during setup to restore your MOSS account.
               </p>
               <div className="form-actions">
                 <button className="btn btn-secondary" onClick={() => setSheet(null)}>Cancel</button>
-                <button className="btn btn-primary" onClick={() => { setSheet(null); connect(); }}>Restore</button>
+                <button className="btn btn-primary" onClick={() => { setSheet(null); connect(); }}>Restoring account</button>
               </div>
             </div>
           </div>
@@ -216,7 +216,7 @@ export function WalletApp() {
           </div>
           {balanceDisplay === 0 && !isBalancesLoading && (
             <p className="balance-hint">
-              Testnet ETH. <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank">Get from faucet</a>, then tap Deposit.
+              New wallet. <a href="https://docs.megaeth.com/moss-docs/wallet/deposit-flows" target="_blank">Deposit ETH</a> to get started.
             </p>
           )}
         </div>

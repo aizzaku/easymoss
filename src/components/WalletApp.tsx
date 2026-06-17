@@ -114,6 +114,47 @@ export function WalletApp() {
             </div>
           </div>
 
+          <div className="flow-chart">
+            <h3>How it works — 30 seconds</h3>
+            <div className="flow-steps glass-card">
+              <div className="flow-step">
+                <div className="flow-step-num">1</div>
+                <div className="flow-step-body">
+                  <div className="flow-step-label">Tap Create Wallet</div>
+                  <div className="flow-step-desc">Works on your phone or laptop — Safari, Chrome, any browser.</div>
+                </div>
+              </div>
+              <div className="flow-step">
+                <div className="flow-step-num">2</div>
+                <div className="flow-step-body">
+                  <div className="flow-step-label">Verify with your device</div>
+                  <div className="flow-step-desc">Face ID, Touch ID, or fingerprint. Same as unlocking your phone.</div>
+                </div>
+              </div>
+              <div className="flow-step">
+                <div className="flow-step-num">3</div>
+                <div className="flow-step-body">
+                  <div className="flow-step-label">Key created on-device</div>
+                  <div className="flow-step-desc">Your private key is generated and stored <strong>only</strong> on your device. Nobody else ever sees it.</div>
+                </div>
+              </div>
+              <div className="flow-step">
+                <div className="flow-step-num">4</div>
+                <div className="flow-step-body">
+                  <div className="flow-step-label">Save your Recovery Code</div>
+                  <div className="flow-step-desc">MOSS gives you a one-time code. Write it down — this is your backup if you lose your device.</div>
+                </div>
+              </div>
+              <div className="flow-step">
+                <div className="flow-step-num">✓</div>
+                <div className="flow-step-body">
+                  <div className="flow-step-label">Done. You have a wallet.</div>
+                  <div className="flow-step-desc">Copy your address, get testnet ETH from the faucet, and start using it.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="security-note">
             <h3>How your wallet stays safe</h3>
             <p>
